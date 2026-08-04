@@ -1,0 +1,88 @@
+def calculator():
+    print("--- Python Command-Line Calculator ---")
+    
+    while True:
+        # Displaying the operation menu
+        print("\nAvailable Operations:")
+        print("1. Add (+)")
+        print("2. Subtract (-)")
+        print("3. Multiply (*)")
+        print("4. Float Division (/)")
+        print("5. Integer Division (//)")
+        print("6. Exponentiation (**)")
+        print("7. Percentage (%)")
+        print("8. Quit")
+        
+        # Taking user choice
+        choice = input("\nEnter choice (1-8) or the symbol: ").strip()
+        
+        # Check if the user wants to terminate the program
+        if choice in ('8', 'quit', 'Quit', 'q', 'Q'):
+            print("Exiting calculator. Goodbye!")
+            break
+            
+        # Validating standard operation inputs
+        valid_choices = {
+            '1': '+', '2': '-', '3': '*', '4': '/', 
+            '5': '//', '6': '**', '7': '%',
+            '+': '+', '-': '-', '*': '*', '/': '/', 
+            '//': '//', '**': '**', '%': '%'
+        }
+        
+        if choice not in valid_choices:
+            print("Invalid selection! Please choose a valid option.")
+            continue
+            
+        # Determining the active operator
+        operator = valid_choices[choice]
+        
+        # Gathering numerical inputs with error handling
+        try:
+            num1 = float(input("Enter first number: "))
+            num2 = float(input("Enter second number: "))
+        except ValueError:
+            print("Error: Invalid numerical input. Please try again.")
+            continue
+            
+        # Executing calculation based on chosen operation
+        if operator == '+':
+            result = num1 + num2
+            print(f"Result: {num1} + {num2} = {result}")
+            
+        elif operator == '-':
+            result = num1 - num2
+            print(f"Result: {num1} - {num2} = {result}")
+            
+        elif operator == '*':
+            result = num1 * num2
+            print(f"Result: {num1} * {num2} = {result}")
+            
+        elif operator == '/':
+            if num2 == 0:
+                print("Error: Mathematical division by zero is undefined.")
+            else:
+                result = num1 / num2
+                print(f"Result: {num1} / {num2} = {result}")
+                
+        elif operator == '//':
+            if num2 == 0:
+                print("Error: Mathematical division by zero is undefined.")
+            else:
+                result = num1 // num2
+                print(f"Result: {num1} // {num2} = {result}")
+                
+        elif operator == '**':
+            result = num1 ** num2
+            print(f"Result: {num1} ** {num2} = {result}")
+            
+        elif operator == '%':
+            # Calculates what percentage num1 is of num2
+            if num2 == 0:
+                print("Error: Total amount (second number) cannot be zero.")
+            else:
+                result = (num1 / num2) * 100
+                print(f"Result: {num1} is {result}% of {num2}")
+
+# Initializing the calculator function
+if __name__ == "__main__":
+    calculator()
